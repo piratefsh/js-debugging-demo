@@ -3,9 +3,11 @@
 **/
 function getSum(numbers){
   let result;
+  let convertedNum;
 
   for(let i = 0; i < numbers.length; i++) {
-    result += numbers[i]
+    convertedNum = new Number(numbers[i])
+    result += convertedNum
   }
 
   return result;
@@ -30,18 +32,18 @@ function main(){
   const form = document.getElementById('calculator');
 
   // get input field in form
-  const input = form.querySelector('#user_input');
+  const input = form.querySelector('#user-input');
 
   // when form is submitted,
   form.addEventListener('submit', function(e) {
     // prevent default action
     e.preventDefault()
 
-    // 1. get user input
-    const weight = input.value.split(',');
+    // 1. parse user input
+    const numbers = input.value.split(',');
 
     // 2. calculate result
-    const result = getSum(weight)
+    const result = getSum(numbers)
 
     // 3. display it
     displayResult(result);
