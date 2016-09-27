@@ -1,6 +1,7 @@
-
-function sum(numbers){
-
+/**
+  returns sum of all numbers in array
+**/
+function getSum(numbers){
   let result;
 
   for(let i = 0; i < numbers.length; i++) {
@@ -10,32 +11,41 @@ function sum(numbers){
   return result;
 }
 
+/**
+  appends summation result to body
+**/
 function displayResult(result){
   const div = document.createElement('div')
   const text = `the result is ${result}`
+
   div.innerHTML = text;
   document.body.appendChild(div)
 }
 
-// form
-const form = document.getElementById('calculator');
+/**
+  initialize app
+**/
+function main(){
+  // get form
+  const form = document.getElementById('calculator');
 
-// input field
-const input = document.getElementById('user_input');
+  // get input field in form
+  const input = form.querySelector('#user_input');
 
-debugger;
+  // when form is submitted,
+  form.addEventListener('submit', function(e) {
+    // prevent default action
+    e.preventDefault()
 
-form.addEventListener('submit', function(e) {
-  // prevent default action
-  e.preventDefault()
+    // 1. get user input
+    const weight = input.value.split(',');
 
-  // 1. get user input
-  const weight = input.value.split(' ');
+    // 2. calculate result
+    const result = getSum(weight)
 
-  // 2. calculate result
-  const result = sum(weight)
+    // 3. display it
+    displayResult(result);
+  })
+}
 
-  // 3. display it
-  displayResult(result);
-})
-
+main();
